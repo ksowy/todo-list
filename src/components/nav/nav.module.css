@@ -1,0 +1,17 @@
+.container {
+  padding: 20px 0 25px 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.navItem {
+  margin-right: 30px;
+}
+
+.navItem:last-child {
+  margin: 0;
+}
