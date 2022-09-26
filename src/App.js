@@ -6,12 +6,15 @@ import styles from './app.module.css'
 
 export const App = () => {
   return (
-    <div className={styles.container}>
+    <>
       <Nav />
-      <Routes>
-        <Route path='/' exact element={<Home />} />
-        <Route path='/about' element={<About />} />
-      </Routes>
-    </div>
+      <div className={styles.background}></div>
+      <div className={styles.container}>
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/about' element={<About />} />
+        </Routes>
+      </div>
+    </>
   )
 }

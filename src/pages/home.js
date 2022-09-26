@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Todo } from '../components/todo'
 import { TodoForm } from '../components/todo-form/todo-form'
+import { TodoNav } from '../components/todo-nav'
+import styles from './home.module.css'
 
 export const Home = () => {
   const [todos, setTodos] = useState([])
@@ -47,9 +49,7 @@ export const Home = () => {
 
   return (
     <>
-      <h1>
-        Home page with <b>{todos.length}</b> task(s)
-      </h1>
+      <h1 className={styles.title}>TODO</h1>
 
       <TodoForm
         handleKeySubmit={handleKeySubmit}
@@ -58,7 +58,7 @@ export const Home = () => {
         onClick={onClick}
       />
 
-      <div>
+      <div className={styles.list}>
         {todos.map((todo) => {
           return (
             <Todo
@@ -70,6 +70,7 @@ export const Home = () => {
           )
         })}
       </div>
+      <TodoNav todoLength={todos.length} />
     </>
   )
 }

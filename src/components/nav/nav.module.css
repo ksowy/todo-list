@@ -1,10 +1,13 @@
 .container {
-  padding: 20px 0 25px 0;
+  background-color: white;
 }
 
 .nav {
+  width: 470px;
+  margin: 0 auto;
+
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -14,4 +17,9 @@
 
 .navItem:last-child {
   margin: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: gray;
 }

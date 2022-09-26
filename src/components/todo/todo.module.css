@@ -1,0 +1,51 @@
+.item {
+  background: white;
+  border-bottom: 1px solid rgb(207, 207, 207);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+}
+
+.item:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+.itemToggle {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.toggle {
+  width: 18px;
+  padding: 9px 0;
+  margin-right: 20px;
+
+  border: 1px solid #cbd0d4;
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemText {
+  flex: 0px;
+}
+
+.text {
+  font-family: 'Lexend';
+  font-weight: normal;
+  color: #444;
+  text-decoration: none;
+  border: none;
+}
+
+.itemRemove {
+  margin-left: 20px;
+}
+
+.remove {
+  border: 0;
+  cursor: pointer;
+}
