@@ -1,9 +1,9 @@
-import styles from './todo.module.css'
+import styles from "./todo-item.module.css";
 
-export const Todo = ({ todo, toggleTodo, removeTodo }) => {
+export const TodoItem = ({ todo, toggleTodo, removeTodo }) => {
   return (
     <div className={styles.item} key={todo.id}>
-      <input className={styles.itemToggle} type='checkbox' />
+      <input className={styles.itemToggle} type="checkbox" />
 
       <div className={styles.itemText}>
         <span className={styles.text} onClick={() => toggleTodo(todo.id)}>
@@ -15,5 +15,5 @@ export const Todo = ({ todo, toggleTodo, removeTodo }) => {
         ╳
       </button>
     </div>
-  )
-}
+  );
+};
