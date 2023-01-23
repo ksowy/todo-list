@@ -1,8 +1,6 @@
-import styles from "./todo.module.css";
-import { Icon } from "../../components/icon";
 import { useForm } from "react-hook-form";
-import { TodoNav } from "../../components/todo-nav";
 import { useState } from "react";
+import { Icon, TodoNav } from "../../components";
 
 const data = [
   { id: 0, todoText: "This is first task!", checked: false },
@@ -12,9 +10,10 @@ const data = [
 ];
 
 export const Todo = () => {
-  const { register, handleSubmit, reset } = useForm();
-
   const [todos, setTodos] = useState(data);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     if (data.todoText) {
@@ -28,16 +27,14 @@ export const Todo = () => {
   };
 
   const handleKeySubmit = (e) => {
-    if (e.key === "Enter") {
-      onSubmit(e);
-    }
+    if (e.key === "Enter") onSubmit(e);
   };
 
   const removeTodo = (id) => {
     setTodos([...todos.filter((todo) => todo.id !== id)]);
   };
 
-  const handleToggle = (id) => {
+  const toggleTodo = (id) => {
     setTodos([
       ...todos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : { ...todo }
@@ -49,35 +46,68 @@ export const Todo = () => {
     <>
       <h1 className="pt-12 pb-8 text-slate-50 text-2xl">TODO</h1>
 
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="w-full	rounded-md p-[18px] mb-6 bg-white drop-shadow-xl flex items-center justify-between"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input
           type="text"
           name="todoText"
           {...register("todoText")}
           onKeyDown={handleKeySubmit}
-          className={styles.input}
+          className="cursor-text flex-none border-0"
           placeholder="Write your message here"
         />
 
-        <button className={styles.create} type="submit">
+        <button
+          className="border-0 text-slate-500 cursor-pointer"
+          type="submit"
+        >
           Create todo!
         </button>
       </form>
 
-      <div className={styles.list}>
+      <div className="w-full drop-shadow-xl">
         {todos.map((todo) => (
-          <div className={styles.item} key={todo.id}>
+          <div
+            className="bg-white flex items-center justify-between py-4 px-6 border-b-[1px] border-solid border-gray-300 first:rounded-t-lg"
+            key={todo.id}
+          >
             <input
-              className={styles.itemToggle}
+              className="mr-4"
               type="checkbox"
-              onClick={() => handleToggle(todo.id)}
+              onClick={() => toggleTodo(todo.id)}
             />
 
-            <div className={styles.itemText}>
-              <span className={styles.text}>{todo.todoText}</span>
+            <div className="mr-5 cursor-pointer w-full">
+              {isEdit ? (
+                <div className="flex justify-between text-slate-500">
+                  <input
+                    type="text"
+                    name="todoText"
+                    className="bg-white cursor-text flex-none border-0"
+                    defaultValue={todo.todoText}
+                  />
+
+                  <button onClick={() => setIsEdit(false)}>Submit</button>
+                </div>
+              ) : (
+                <input
+                  type="text"
+                  name="todoText"
+                  className="bg-white cursor-text flex-none border-0 text-slate-500"
+                  disabled
+                  defaultValue={todo.todoText}
+                />
+              )}
             </div>
 
-            <Icon icon="Edit" className="w-5 cursor-pointer stroke-1 mr-2" />
+            <Icon
+              icon="Edit"
+              className="w-5 cursor-pointer stroke-1 mr-2"
+              onClick={() => setIsEdit(true)}
+            />
+
             <Icon
               icon="Trash"
               className="w-5 cursor-pointer stroke-1"

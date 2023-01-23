@@ -1,19 +1,18 @@
 import React from "react";
-import styles from "./nav.module.css";
 import { Link } from "react-router-dom";
 
 export const Nav = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.nav}>
-        <h3 className={styles.navItem}>
-          <Link to="/" className={styles.link}>
+    <div className="bg-white">
+      <div className="w-3/4 m-auto flex justify-between items-center">
+        <h3 className="mr-8 last:mr-0">
+          <Link to="/" className="text-slate-500">
             Home Page
           </Link>
         </h3>
 
-        <h3 className={styles.navItem}>
-          <Link to="/todo" className={styles.link}>
+        <h3 className="mr-8 last:mr-0">
+          <Link to="/todo" className="text-slate-500">
             Todo
           </Link>
         </h3>
