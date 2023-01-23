@@ -1,3 +1,47 @@
+.title {
+  width: 470px;
+  padding: 50px 0 30px 0;
+  letter-spacing: 14px;
+  color: #ffffff;
+}
+
+.list {
+  width: 100%;
+  box-shadow: 0 14px 28px rgb(100 100 100 / 10%),
+    0 10px 10px rgb(100 100 100 / 5%);
+}
+
+.form {
+  width: 100%;
+  border-radius: 5px;
+  padding: 18px;
+  margin-bottom: 25px;
+  background-color: white;
+  box-shadow: 0 14px 28px rgb(100 100 100 / 10%),
+    0 10px 10px rgb(100 100 100 / 5%);
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.toggle {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.input {
+  cursor: text;
+  flex: 0px;
+  border: none;
+  cursor: text;
+}
+
+.create {
+  border: 0;
+  color: gray;
+  cursor: pointer;
+}
+
 .item {
   background: white;
   border-bottom: 1px solid rgb(207, 207, 207);
