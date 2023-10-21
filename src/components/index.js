@@ -1,5 +1,7 @@
 import { Nav } from "../components/nav";
 import { Icon } from "../components/icon";
-import { TodoNav } from "../components/todo-nav";
+import { TodoItem } from "../components/todo-item";
+import { TodosList } from "../components/todos-list";
+import { TodoControlBar } from "./todo-control-bar";
 
-export { TodoNav, Nav, Icon };
+export { TodoControlBar, Nav, Icon, TodosList, TodoItem };

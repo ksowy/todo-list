@@ -12,8 +12,8 @@ export const Nav = () => {
         </h3>
 
         <h3 className="mr-8 last:mr-0">
-          <Link to="/todo" className="text-slate-500">
-            Todo
+          <Link to="/todos" className="text-slate-500">
+            Todos
           </Link>
         </h3>
       </div>

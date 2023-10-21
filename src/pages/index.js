@@ -1,4 +1,4 @@
 import { Home } from "../pages/home";
-import { Todo } from "../pages/todo";
+import { Todos } from "../pages/todos";
 
-export { Home, Todo };
+export { Home, Todos };
