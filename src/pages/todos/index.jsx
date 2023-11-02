@@ -1,6 +1,7 @@
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
 import { TodoControlBar, TodosList } from "../../components";
+import CrossIcon from "./cross-icon.svg";
+import { useState } from "react";
 
 const data = [
   { id: 0, todoText: "This is first task!", checked: false },
@@ -10,23 +11,29 @@ const data = [
 ];
 
 export const Todos = () => {
-  const [todos, setTodos] = useState(data);
+  const [inputTextValue, setInputStateValue] = useState("");
 
-  const { register, handleSubmit, reset } = useForm();
+  const { control, watch, getValues, handleSubmit } = useForm({
+    defaultValues: { data },
+  });
+  const { fields, append, remove, update } = useFieldArray({
+    name: "data",
+    control,
+  });
 
-  const onSubmit = (data) => {
-    if (data.todoText) {
-      const newTodo = {
-        todoText: data.todoText,
+  const addTodoItem = () => {
+    if (inputTextValue)
+      return append({
+        id: getValues().data.length,
+        todoText: inputTextValue,
         checked: false,
-      };
-      setTodos([...todos, newTodo]);
-      reset();
-    }
+      });
+
+    setInputStateValue("");
   };
 
-  const handleKeySubmit = (e) => {
-    if (e.key === "Enter") onSubmit(e);
+  const handleKeyAddTodoItem = (e) => {
+    if (e.key === "Enter") addTodoItem(e);
   };
 
   return (
@@ -35,16 +42,31 @@ export const Todos = () => {
 
       <form
         className="w-full	rounded-md p-[18px] mb-6 bg-white drop-shadow-xl flex items-center justify-between"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(addTodoItem)}
       >
-        <input
-          type="text"
-          name="todoText"
-          {...register("todoText")}
-          onKeyDown={handleKeySubmit}
-          className="cursor-text flex-1 border-0"
-          placeholder="Write your message here"
-        />
+        <div className="flex items-center justify-between flex-1 mr-6">
+          <input
+            type="text"
+            value={inputTextValue}
+            onKeyDown={handleKeyAddTodoItem}
+            onChange={(e) => setInputStateValue(e.target.value)}
+            className="cursor-text flex-1 border-0"
+            placeholder="Write your task here"
+          />
+
+          {inputTextValue && (
+            <span
+              onClick={() => setInputStateValue("")}
+              className="cursor-pointer"
+            >
+              <img
+                src={CrossIcon}
+                alt="cross-icon"
+                className="w-[14px] h-[14px]"
+              />
+            </span>
+          )}
+        </div>
 
         <button
           className="border-0 text-slate-500 cursor-pointer"
@@ -54,15 +76,15 @@ export const Todos = () => {
         </button>
       </form>
 
-      <TodosList todos={todos} setTodos={setTodos} />
+      <TodosList todos={fields} remove={remove} update={update} />
 
-      {todos.length !== 0 && (
+      {/* {fields.length !== 0 && (
         <TodoControlBar
-          todos={todos}
+          fields={fields}
           setTodos={setTodos}
           todoLength={todos.length}
         />
-      )}
+      )} */}
     </>
   );
 };
